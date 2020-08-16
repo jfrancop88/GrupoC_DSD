@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "epay"
+    }
+  },
+  "defaultProject": "epay",
+  "cli": {
+    "analytics": false
+  }
 }
