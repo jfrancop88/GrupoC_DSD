@@ -5,7 +5,9 @@
   "projects": {
     "epay": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -24,9 +26,14 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/paper-dashboard.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -88,6 +95,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/css/paper-dashboard.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -124,5 +132,8 @@
   "defaultProject": "epay",
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    
   }
 }
