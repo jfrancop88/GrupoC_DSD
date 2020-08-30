@@ -1,0 +1,1 @@
+CREATE DATABASE `system-payment`;
