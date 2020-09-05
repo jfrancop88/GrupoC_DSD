@@ -1,0 +1,35 @@
+<div class="is-auth">
+  <form novalidate #signinForm="ngForm" (ngSubmit)="signin(signinForm)">
+    <div class="form-heading">
+      <h1>Sesión Comercios - ePay</h1>
+    </div>
+    <div class="form-body">
+      <div class="form-group has-feedback">
+        <input [(ngModel)]="email" name="email" required type="email" placeholder="Ingrese su correo" class="form-control">
+        <span class="fa fa-envelope form-control-feedback text-muted"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input [(ngModel)]="password" name="password" required type="password" placeholder="Password" class="form-control">
+        <span class="fa fa-lock form-control-feedback text-muted"></span>
+      </div>
+      
+      <div class="clearfix">
+        <div class="checkbox c-checkbox pull-left mt0">
+          <label>
+            <input type="checkbox" [(ngModel)]="remember" name="remember">
+            <span class="fa fa-check"></span>Recordarme</label>
+        </div>
+        <div class="pull-right"><a routerLink="/forgotpassword" class="text-muted">Restablecer password</a>
+        </div>
+      </div>
+      <button [disabled]="requesting" type="submit" class="btn btn-block btn-primary mt-lg">
+        Login <i *ngIf="requesting" class="fa fa-spinner fa-pulse fa-fw"></i>
+      </button>
+      <p class="pt-lg text-center">No tiene cuenta a&uacute;n?</p>
+      <a routerLink="/signup" class="btn btn-block btn-default">Reg&iacute;strese ahora</a>
+      <p *ngIf="errorMessage" class="pt-lg text-center text-danger">
+        {{errorMessage}}
+      </p>
+    </div>
+  </form>
+</div>
