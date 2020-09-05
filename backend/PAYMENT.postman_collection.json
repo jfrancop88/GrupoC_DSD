@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"paymentAmount\": 299.0,\r\n    \"taxAmount\": \"2.9\",\r\n    \"invoiceNumber\": \"24124124124124\",\r\n    \"verificationNumber\": \"G421rG\",\r\n    \"quota\": 2,\r\n    \"customer\": {\r\n        \"fullName\": \"Alvro Aguinaga\",\r\n        \"email\": \"alvaro92a18@gmail.com\",\r\n        \"telephoneNumber\": \"986809252\",\r\n        \"documentNumber\": \"986809252\",\r\n        \"accountNumber\": \"45591c2313334111\",\r\n        \"expirationDate\": \"03/23\",\r\n        \"identificationCode\": 912\r\n    }\r\n}",
+					"raw": "{\r\n    \"paymentAmount\": 299.0,\r\n    \"invoiceNumber\": \"24124124124124\",\r\n    \"verificationNumber\": \"G421rG\",\r\n    \"quota\": 2,\r\n    \"customer\": {\r\n        \"fullName\": \"Alvro Aguinaga\",\r\n        \"email\": \"alvaro92a18@gmail.com\",\r\n        \"telephoneNumber\": \"986809252\",\r\n        \"documentNumber\": \"47082903\",\r\n        \"accountNumber\": \"4557883133341112\",\r\n        \"expirationDate\": \"03/23\",\r\n        \"identificationCode\": 912\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,21 +37,9 @@
 		},
 		{
 			"name": "PAYMENT_GET",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"paymentAmount\": 299.0,\r\n    \"taxAmount\": \"2.9\",\r\n    \"invoiceNumber\": \"24124124124124\",\r\n    \"verificationNumber\": \"G421rG\",\r\n    \"quota\": 2,\r\n    \"customer\": {\r\n        \"fullName\": \"Alvro Aguinaga\",\r\n        \"email\": \"alvaro92a18@gmail.com\",\r\n        \"telephoneNumber\": \"986809252\",\r\n        \"documentNumber\": \"986809252\",\r\n        \"accountNumber\": \"45491c2313334111\",\r\n        \"expirationDate\": \"03/23\",\r\n        \"identificationCode\": 912\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
 					"raw": "http://localhost:9000/api/v1/payment",
 					"protocol": "http",

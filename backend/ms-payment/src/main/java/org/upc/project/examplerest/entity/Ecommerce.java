@@ -13,10 +13,10 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "ecommerce")
-public class    Ecommerce {
+public class Ecommerce {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ecommerce_id")
     private Long id;  //Ripley
 
@@ -25,7 +25,10 @@ public class    Ecommerce {
 
     @Column(name = "name")
     private String name; // Ripley SAC
-    
+
+    @Column(name = "commission_percentage")
+    private int commissionPercentage; // Ripley SAC
+
     @Column(name = "enabled")
     private boolean enabled; //true
 }

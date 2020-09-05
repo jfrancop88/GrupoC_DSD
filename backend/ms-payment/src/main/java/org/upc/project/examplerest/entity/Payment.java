@@ -23,9 +23,9 @@ import java.util.UUID;
 public class Payment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "payment_id")
-    private long id;
+    private Long id;
 
     @Column(name = "transaction_number")
     private final String transactionNumber = UUID.randomUUID().toString();
@@ -33,8 +33,8 @@ public class Payment {
     @Column(name = "payment_amount")
     private BigDecimal paymentAmount;
 
-    @Column(name = "tax_amount")
-    private BigDecimal taxAmount;
+    @Column(name = "commission_amount")
+    private BigDecimal commissionAmount;
 
     @Column(name = "invoice_number")
     private String invoiceNumber;

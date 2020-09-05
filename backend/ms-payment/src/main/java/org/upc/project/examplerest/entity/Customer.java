@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -15,13 +17,13 @@ import java.util.Date;
 @Builder
 @Data
 @Entity
-@Table(name = "customer")
+@Table(name = "customer_card")
 public class Customer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
-    private long id;
+    private Long id;
 
     @Column(name = "full_name")
     private String fullName;
@@ -46,4 +48,7 @@ public class Customer {
     @Column(name = "identification_code")
     private int identificationCode;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "bank_id", nullable = false)
+    private Bank bank;
 }

@@ -20,7 +20,7 @@ public class PaymentDTO {
 
     private BigDecimal paymentAmount;
 
-    private BigDecimal taxAmount;
+    private BigDecimal commissionAmount;
 
     private String invoiceNumber;
 

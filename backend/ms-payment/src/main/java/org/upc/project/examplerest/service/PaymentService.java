@@ -5,15 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.upc.project.examplerest.beans.CustomerDTO;
 import org.upc.project.examplerest.beans.PaymentDTO;
-import org.upc.project.examplerest.entity.Customer;
-import org.upc.project.examplerest.entity.Ecommerce;
-import org.upc.project.examplerest.entity.Payment;
-import org.upc.project.examplerest.entity.StatePayment;
+import org.upc.project.examplerest.entity.*;
+import org.upc.project.examplerest.repository.BankRepository;
 import org.upc.project.examplerest.repository.EcommerceRepository;
 import org.upc.project.examplerest.repository.PaymentRepository;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +31,9 @@ public class PaymentService implements GenericService<PaymentDTO> {
     @Autowired
     private EcommerceRepository ecommerceRepository;
 
+    @Autowired
+    private BankRepository bankRepository;
+
     private final SimpleDateFormat format = new SimpleDateFormat("MM/yy");
 
     @Override
@@ -35,26 +42,24 @@ public class PaymentService implements GenericService<PaymentDTO> {
         List<PaymentDTO> dtos = new ArrayList<>();
 
         payments.forEach(payment -> {
-            dtos.add(
-                    PaymentDTO.builder()
-                            .transactionNumber(payment.getTransactionNumber())
-                            .invoiceNumber(payment.getInvoiceNumber())
-                            .paymentAmount(payment.getPaymentAmount())
-                            .taxAmount(payment.getTaxAmount())
-                            .statePayment(payment.getStatePayment())
-                            .updateUser(payment.getUpdateUser())
-                            .transactionDate(payment.getPaymentDate())
-                            .ecommerce(payment.getEcommerce().getEcommerceCode())
-                            .ecommerceName(payment.getEcommerce().getName())
-                            .customer(CustomerDTO.builder()
-                                    .accountNumber(payment.getCustomer().getAccountNumber())
-                                    .email(payment.getCustomer().getEmail())
-                                    .fullName(payment.getCustomer().getFullName())
-                                    .expirationDate(format.format(payment.getCustomer().getExpirationDate()))
-                                    .identificationCode(payment.getCustomer().getIdentificationCode())
-                                    .build())
-                            .build()
-            );
+            dtos.add(PaymentDTO.builder()
+                    .transactionNumber(payment.getTransactionNumber())
+                    .invoiceNumber(payment.getInvoiceNumber())
+                    .paymentAmount(payment.getPaymentAmount())
+                    .commissionAmount(payment.getCommissionAmount())
+                    .statePayment(payment.getStatePayment())
+                    .updateUser(payment.getUpdateUser())
+                    .transactionDate(payment.getPaymentDate())
+                    .ecommerce(payment.getEcommerce().getEcommerceCode())
+                    .ecommerceName(payment.getEcommerce().getName())
+                    .customer(CustomerDTO.builder()
+                            .accountNumber(payment.getCustomer().getAccountNumber())
+                            .email(payment.getCustomer().getEmail())
+                            .fullName(payment.getCustomer().getFullName())
+                            .expirationDate(format.format(payment.getCustomer().getExpirationDate()))
+                            .identificationCode(payment.getCustomer().getIdentificationCode())
+                            .build())
+                    .build());
         });
 
         return dtos;
@@ -68,7 +73,14 @@ public class PaymentService implements GenericService<PaymentDTO> {
     @Override
     public PaymentDTO save(PaymentDTO paymentDTO) throws Exception {
 
-        if (!paymentDTO.getCustomer().getAccountNumber().contains("4559")) {
+        String bingNumber = paymentDTO.getCustomer().getAccountNumber().substring(0, 6);
+//        if (paymentDTO.getCustomer().getAccountNumber().contains(bingNumber)) {
+//            throw new Exception("Bin incorrecto");
+//
+//        }
+        Bank bank = bankRepository.findByBinNumber(bingNumber);
+
+        if (validateCustomerCard(paymentDTO.getCustomer(), bank)) {
             throw new Exception("Tarjeta Invalida");
         }
 
@@ -83,11 +95,15 @@ public class PaymentService implements GenericService<PaymentDTO> {
                 .accountNumber(paymentDTO.getCustomer().getAccountNumber())
                 .expirationDate(format.parse(paymentDTO.getCustomer().getExpirationDate()))
                 .identificationCode(paymentDTO.getCustomer().getIdentificationCode())
+                .bank(bank)
                 .build();
+
+        BigDecimal commissionAmount = paymentDTO.getPaymentAmount().multiply(new BigDecimal(ecommerce.getCommissionPercentage()))
+                .divide(new BigDecimal(100));
 
         Payment payment = Payment.builder()
                 .paymentAmount(paymentDTO.getPaymentAmount())
-                .taxAmount(paymentDTO.getTaxAmount())
+                .commissionAmount(commissionAmount)
                 .invoiceNumber(paymentDTO.getInvoiceNumber())
                 .verificationNumber(paymentDTO.getVerificationNumber())
                 .statePayment(StatePayment.IN_PROCESS)
@@ -116,4 +132,17 @@ public class PaymentService implements GenericService<PaymentDTO> {
         return null;
     }
 
+
+    private boolean validateCustomerCard(CustomerDTO customer, Bank bank) throws ParseException {
+        Date expirationDate = format.parse(customer.getExpirationDate());
+        Date endDate = Date.from(LocalDate.now().plusYears(5).atStartOfDay().atZone(ZoneId.systemDefault())
+                .toInstant());
+
+        return !(customer.getAccountNumber().contains(bank.getBinNumber()) &&
+                customer.getAccountNumber().matches("^[0-9]{16}$") &&
+                customer.getAccountNumber().length() == 16 &&
+                expirationDate.before(endDate) &&
+                String.valueOf(customer.getIdentificationCode()).length() == 3);
+
+    }
 }
