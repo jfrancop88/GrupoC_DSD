@@ -25,7 +25,6 @@ public class CustomerDTO {
 
     private String documentNumber;
 
-    //@JsonDeserialize(using = CustomDateSerializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/yy")
     public String expirationDate;
 

@@ -21,11 +21,12 @@ public class InitializerData implements CommandLineRunner {
         Bank bank = Bank.builder()
                 .bankCode("1234124")
                 .bankName("BCP")
-                .binNumber("4557")
+                .binNumber("455788")
                 .build();
 
         Customer customer = Customer.builder()
-                .accountNumber("455712313334111")
+                .accountNumber("4557883133341115")
+                .documentNumber("5646899")
                 .email("alvaro92a18@gmail.com")
                 .expirationDate(new SimpleDateFormat("MM/yy").parse("12/23"))
                 .fullName("Alvro Aguinaga")
@@ -36,6 +37,7 @@ public class InitializerData implements CommandLineRunner {
         Ecommerce ecommerce = Ecommerce.builder()
                 .ecommerceCode("SAGA")
                 .name("SAGA FALABELLA")
+                .commissionPercentage(2)
                 .enabled(true)
                 .build();
 
