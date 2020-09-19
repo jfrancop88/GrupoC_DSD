@@ -7,7 +7,7 @@ public interface GenericService<T> {
 
     List<T> findAll();
 
-    Optional<T> findById(Long id);
+    T findById(String id);
 
     T save(T t) throws Exception;
 

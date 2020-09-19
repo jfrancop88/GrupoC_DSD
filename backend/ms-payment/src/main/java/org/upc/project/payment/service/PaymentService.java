@@ -4,13 +4,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.upc.project.payment.beans.CustomerDTO;
 import org.upc.project.payment.beans.PaymentDTO;
+import org.upc.project.payment.beans.PaymentParameters;
 import org.upc.project.payment.entity.*;
 import org.upc.project.payment.message.PaymentPublisher;
 import org.upc.project.payment.repository.BankRepository;
+import org.upc.project.payment.repository.CustomerRepository;
 import org.upc.project.payment.repository.EcommerceRepository;
 import org.upc.project.payment.repository.PaymentRepository;
+import org.upc.project.payment.util.PaymentUtil;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -38,7 +42,8 @@ public class PaymentService implements GenericService<PaymentDTO> {
     @Autowired
     private PaymentPublisher paymentPublisher;
 
-    private final SimpleDateFormat format = new SimpleDateFormat("MM/yy");
+    @Autowired
+    private CustomerRepository customerRepository;
 
     private final static ObjectMapper MAPPER = new ObjectMapper();
 
@@ -46,34 +51,14 @@ public class PaymentService implements GenericService<PaymentDTO> {
     public List<PaymentDTO> findAll() {
         List<Payment> payments = (List<Payment>) paymentRepository.findAll();
         List<PaymentDTO> dtos = new ArrayList<>();
-
-        payments.forEach(payment -> {
-            dtos.add(PaymentDTO.builder()
-                    .transactionNumber(payment.getTransactionNumber())
-                    .invoiceNumber(payment.getInvoiceNumber())
-                    .paymentAmount(payment.getPaymentAmount())
-                    .commissionAmount(payment.getCommissionAmount())
-                    .statePayment(payment.getStatePayment())
-                    .updateUser(payment.getUpdateUser())
-                    .transactionDate(payment.getPaymentDate())
-                    .ecommerce(payment.getEcommerce().getEcommerceCode())
-                    .ecommerceName(payment.getEcommerce().getName())
-                    .customer(CustomerDTO.builder()
-                            .accountNumber(payment.getCustomer().getAccountNumber())
-                            .email(payment.getCustomer().getEmail())
-                            .fullName(payment.getCustomer().getFullName())
-                            .expirationDate(format.format(payment.getCustomer().getExpirationDate()))
-                            .identificationCode(payment.getCustomer().getIdentificationCode())
-                            .build())
-                    .build());
-        });
-
+        payments.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
         return dtos;
     }
 
     @Override
-    public Optional<PaymentDTO> findById(Long id) {
-        return Optional.empty();
+    public PaymentDTO findById(String id) {
+        Payment payment = paymentRepository.findByTransactionNumber(id);
+        return PaymentUtil.build(payment);
     }
 
     @Override
@@ -86,7 +71,7 @@ public class PaymentService implements GenericService<PaymentDTO> {
 //        }
         Bank bank = bankRepository.findByBinNumber(bingNumber);
 
-        if (validateCustomerCard(paymentDTO.getCustomer(), bank)) {
+        if (PaymentUtil.validateCustomerCard(paymentDTO.getCustomer(), bank)) {
             throw new Exception("Tarjeta Invalida");
         }
 
@@ -99,7 +84,7 @@ public class PaymentService implements GenericService<PaymentDTO> {
                 .telephoneNumber(paymentDTO.getCustomer().getTelephoneNumber())
                 .documentNumber(paymentDTO.getCustomer().getDocumentNumber())
                 .accountNumber(paymentDTO.getCustomer().getAccountNumber())
-                .expirationDate(format.parse(paymentDTO.getCustomer().getExpirationDate()))
+                .expirationDate(PaymentUtil.format.parse(paymentDTO.getCustomer().getExpirationDate()))
                 .identificationCode(paymentDTO.getCustomer().getIdentificationCode())
                 .bank(bank)
                 .build();
@@ -145,17 +130,23 @@ public class PaymentService implements GenericService<PaymentDTO> {
         return null;
     }
 
+    public List<PaymentDTO> findAllByParameters(PaymentParameters parameters) {
+        List<PaymentDTO> dtos = new ArrayList<>();
 
-    private boolean validateCustomerCard(CustomerDTO customer, Bank bank) throws ParseException {
-        Date expirationDate = format.parse(customer.getExpirationDate());
-        Date endDate = Date.from(LocalDate.now().plusYears(5).atStartOfDay().atZone(ZoneId.systemDefault())
-                .toInstant());
-
-        return !(customer.getAccountNumber().contains(bank.getBinNumber()) &&
-                customer.getAccountNumber().matches("^[0-9]{16}$") &&
-                customer.getAccountNumber().length() == 16 &&
-                expirationDate.before(endDate) &&
-                String.valueOf(customer.getIdentificationCode()).length() == 3);
-
+        List<Payment> payments;
+        if (!StringUtils.isEmpty(parameters.getName())) {
+            List<Customer> customers = customerRepository.findByFullNameStartsWith(parameters.getName());
+            customers.forEach(customer -> {
+                List<Payment> payments2 = paymentRepository.findAllByCustomer(customer);
+                payments2.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
+            });
+        } else if (!StringUtils.isEmpty(parameters.getTransactionNumber())) {
+            payments = paymentRepository.findAllByTransactionNumberOrPaymentDate(parameters.getTransactionNumber(), null);
+            payments.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
+        } else {
+            payments = paymentRepository.findAllByTransactionNumberOrPaymentDate(null, null);
+            payments.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
+        }
+        return dtos;
     }
 }
