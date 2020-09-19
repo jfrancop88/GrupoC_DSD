@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
                 this.api.signin(this.email, this.password)
                     .subscribe(() => {
                         console.log('Te has logueado correctamente');
-                        this.router.navigateByUrl('/dashboard/user');
+                        this.router.navigateByUrl('/dashboard');
                         this.requesting = false;
                     }, error => {
                         this.errorMessage = error.json().message;

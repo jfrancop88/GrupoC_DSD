@@ -1,0 +1,73 @@
+<div id="wrapper" class="wrapper">
+    <header class="topnavbar-wrapper">
+      <nav role="navigation" class="navbar topnavbar">
+        <div class="navbar-header">
+          <div class="navbar-brand text-white" routerLink="/dashboard/user/amount">RRHH - Convocatorias</div>
+        </div>
+        <div class="nav-wrapper">
+          <ul class="nav navbar-nav">
+            <li>
+              <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+              <a class="hidden-xs">
+                <em class="fa fa-navicon"></em>
+              </a>
+              <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+              <a  class="visible-xs sidebar-toggle">
+                <em class="fa fa-navicon"></em>
+              </a>
+            </li>
+            <li routerLink="/dashboard/user/user" routerLinkActive="active">
+              <a>
+                <i class="fa fa-user"></i>
+              </a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="visible-lg" (click)="doFullScreen()" title="fullscreen">
+              <a>
+                <em class="fa fa-expand"></em>
+              </a>
+            </li>
+            <li (click)="logout()" title="logout">
+              <a>
+                <em class="fa fa-sign-out"></em>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <aside class="aside">
+      <div class="aside-inner">
+        <nav class="sidebar">
+          <ul class="nav">
+            <li routerLink="/dashboard/user/activas" routerLinkActive="active" title="activas">
+              <a>
+                <em class="fa fa-folder-open"></em>
+                <span class="hidden-xs">Solicitudes Activas</span>
+              </a>
+            </li>
+            <li routerLink="/dashboard/user/archivadas" routerLinkActive="active" title="archivadas">
+              <a>
+                <em class="fa fa-folder"></em>
+                <span class="hidden-xs">Solicitudes Cerradas</span>
+              </a>
+            </li>
+            <li routerLink="/dashboard/user/busqueda" routerLinkActive="active" title="busqueda">
+              <a>
+                <em class="fa fa-search"></em>
+                <span class="hidden-xs">Busqueda de CV</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+    <section class="section">
+      <div class="content-wrapper">
+        <div>
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </section>
+    </div>

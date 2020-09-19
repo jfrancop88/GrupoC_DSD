@@ -44,7 +44,7 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   animation: formZoomOut 1s;
-  opacity: 0.82;
+  opacity: 0.90;
 }
 
 .form-heading {

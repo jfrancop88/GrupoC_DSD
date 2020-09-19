@@ -24,6 +24,7 @@ import { Base64Service } from './service/base64.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ProviderARepository, ProviderHRepository, Activas,
          Archivadas, Busqueda } from './service/model.repository';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ProviderARepository, ProviderHRepository, Activas,
     SigninComponent,
     SignupComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
