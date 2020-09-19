@@ -10,6 +10,8 @@ import org.upc.project.notification.beans.PaymentDTO;
 import org.upc.project.notification.entity.PaymentNotification;
 import org.upc.project.notification.repository.PaymentNotificationRepository;
 
+import java.util.Date;
+
 @Slf4j
 @Component
 public class PaymentTransactionConsumer {
@@ -24,20 +26,30 @@ public class PaymentTransactionConsumer {
     private PaymentNotificationRepository paymentNotificationRepository;
 
     @JmsListener(destination = "${jms.queue.consumer}")
-    public void receiveMessage(String jsonPayload) throws JsonProcessingException {
+    public void receiveMessage(String jsonPayload) {
 
-        PaymentDTO json = objectMapper.readValue(jsonPayload, PaymentDTO.class);
-        log.info("Received <" + json.toString() + ">");
+        try {
+            PaymentDTO json = objectMapper.readValue(jsonPayload, PaymentDTO.class);
 
-        String rawJson = objectMapper.writeValueAsString(json);
+            log.info("Received <" + json.toString() + ">");
+            String rawJson = objectMapper.writeValueAsString(json);
 
-        PaymentNotification paymentNotification = new PaymentNotification();
-        paymentNotification.setEcommerceCode(json.getEcommerce());
-        paymentNotification.setRawJson(rawJson);
-        paymentNotification.setTransactionId(json.getTransactionNumber());
-        paymentNotification.setIsSendEmail(true);
+            PaymentNotification paymentNotification = new PaymentNotification();
+            paymentNotification.setEcommerceCode(json.getEcommerce());
+            paymentNotification.setRawJson(rawJson);
+            paymentNotification.setTransactionId(json.getTransactionNumber());
+            paymentNotification.setIsSendEmail(true);
 
-        log.info("Create Notification Send transactionId {}", json.getTransactionNumber());
-        paymentNotificationRepository.save(paymentNotification);
+            log.info("Create Notification Send transactionId {}", json.getTransactionNumber());
+            paymentNotificationRepository.save(paymentNotification);
+        } catch (JsonProcessingException ex) {
+            PaymentNotification paymentNotification = new PaymentNotification();
+            //paymentNotification.setEcommerceCode(json.getEcommerce());
+            paymentNotification.setRawJson(jsonPayload);
+            //paymentNotification.setTransactionId(json.getTransactionNumber());
+            paymentNotification.setIsSendEmail(false);
+            paymentNotification.setNotificationUpdated(new Date());
+            paymentNotificationRepository.save(paymentNotification);
+        }
     }
 }

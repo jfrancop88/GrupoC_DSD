@@ -128,3 +128,8 @@ CREATE INDEX `FKiw1ungnd9feskyaid8s56egj0` ON `system-payment`.`payment_transact
 CREATE INDEX `FK4h3h7fg3jll24km8y7samarr5` ON `system-payment`.`payment_transaction` (`ecommerce_id` ASC) VISIBLE;
 
 USE `system-payment`;
+
+INSERT INTO bank (bank_id, bank_name, bank_code, bin_number) VALUES (1,'BCP','1234124','455788');
+INSERT INTO ecommerce (ecommerce_id, ecommerce_code, enabled, name, commission_percentage) VALUES (1,'SAGA',1,'SAGA FALABELLA',2);
+INSERT INTO customer_card (customer_id, account_number, document_number, email, expiration_date, full_name, identification_code, telephone_number, bank_id) VALUES (1,'4557883133341115','5646899','alvaro92a18@gmail.com','2023-12-01','Alvro Aguinaga',912,NULL,1);
+INSERT INTO payment_transaction (payment_id, invoice_number, payment_amount, payment_date, process_date, quota, rejected_date, state_payment, commission_amount, transaction_number, update_user, verification_number, customer_id, ecommerce_id) VALUES (1,'20470929031',459.00,'2020-09-19 02:28:40','2020-09-19 02:28:40',2,'2020-09-19 02:28:40','IN_PROCESS',4.59,'799bc9a8-4493-46b3-b4c0-344daca03bc2','ADMIN','CAE12a',1,1);
