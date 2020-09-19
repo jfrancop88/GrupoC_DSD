@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"paymentAmount\": 299.0,\r\n    \"invoiceNumber\": \"24124124124124\",\r\n    \"verificationNumber\": \"G421rG\",\r\n    \"quota\": 2,\r\n    \"customer\": {\r\n        \"fullName\": \"Alvro Aguinaga\",\r\n        \"email\": \"alvaro92a18@gmail.com\",\r\n        \"telephoneNumber\": \"986809252\",\r\n        \"documentNumber\": \"47082903\",\r\n        \"accountNumber\": \"4557883133341112\",\r\n        \"expirationDate\": \"03/23\",\r\n        \"identificationCode\": 912\r\n    }\r\n}",
+					"raw": "{\r\n    \r\n    \"paymentAmount\": 299.0,\r\n    \"invoiceNumber\": \"24124124124124\",\r\n    \"verificationNumber\": \"G421rG\",\r\n    \"quota\": 2,\r\n    \"customer\": {\r\n        \"fullName\": \"Alvro Aguinaga\",\r\n        \"email\": \"alvaro92a18@gmail.com\",\r\n        \"telephoneNumber\": \"986809252\",\r\n        \"documentNumber\": \"47082903\",\r\n        \"accountNumber\": \"4557883133341112\",\r\n        \"expirationDate\": \"03/23\",\r\n        \"identificationCode\": 912\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -36,6 +36,37 @@
 			"response": []
 		},
 		{
+			"name": "PAYMENT_PARAMETERS",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"transactionNumber\": \"\",\r\n    \"name\": \"Alvro\",\r\n    \"date\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/payment/parameters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						"parameters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "PAYMENT_GET",
 			"request": {
 				"method": "GET",
@@ -51,6 +82,28 @@
 						"api",
 						"v1",
 						"payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAYMENT_GET_DETAIL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/api/v1/payment/799bc9a8-4493-46b3-b4c0-344daca03bc2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"payment",
+						"799bc9a8-4493-46b3-b4c0-344daca03bc2"
 					]
 				}
 			},
