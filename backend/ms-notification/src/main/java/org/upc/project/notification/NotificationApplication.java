@@ -2,6 +2,8 @@ package org.upc.project.notification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class NotificationApplication {
@@ -10,4 +12,8 @@ public class NotificationApplication {
 		SpringApplication.run(NotificationApplication.class, args);
 	}
 
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 }
