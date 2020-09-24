@@ -11,7 +11,7 @@ public interface GenericService<T> {
 
     T save(T t) throws Exception;
 
-    T update(T t);
+    T update(T t) throws Exception;
 
-    T delete(Long id);
+    T delete(String id) throws Exception;
 }

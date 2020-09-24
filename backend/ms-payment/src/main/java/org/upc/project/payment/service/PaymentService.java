@@ -21,10 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -65,11 +62,12 @@ public class PaymentService implements GenericService<PaymentDTO> {
     public PaymentDTO save(PaymentDTO paymentDTO) throws Exception {
 
         String bingNumber = paymentDTO.getCustomer().getAccountNumber().substring(0, 6);
-//        if (paymentDTO.getCustomer().getAccountNumber().contains(bingNumber)) {
-//            throw new Exception("Bin incorrecto");
-//
-//        }
+
         Bank bank = bankRepository.findByBinNumber(bingNumber);
+
+        if (Objects.isNull(bank)) {
+            throw new Exception("Bin incorrecto");
+        }
 
         if (PaymentUtil.validateCustomerCard(paymentDTO.getCustomer(), bank)) {
             throw new Exception("Tarjeta Invalida");
@@ -126,11 +124,11 @@ public class PaymentService implements GenericService<PaymentDTO> {
     }
 
     @Override
-    public PaymentDTO delete(Long id) {
+    public PaymentDTO delete(String id) {
         return null;
     }
 
-    public List<PaymentDTO> findAllByParameters(PaymentParameters parameters) {
+    public List<PaymentDTO> findAllByParameters(PaymentParameters parameters) throws ParseException {
         List<PaymentDTO> dtos = new ArrayList<>();
 
         List<Payment> payments;
@@ -141,10 +139,11 @@ public class PaymentService implements GenericService<PaymentDTO> {
                 payments2.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
             });
         } else if (!StringUtils.isEmpty(parameters.getTransactionNumber())) {
-            payments = paymentRepository.findAllByTransactionNumberOrPaymentDate(parameters.getTransactionNumber(), null);
+            payments = paymentRepository.findAllByTransactionNumber(parameters.getTransactionNumber());
             payments.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
         } else {
-            payments = paymentRepository.findAllByTransactionNumberOrPaymentDate(null, null);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            payments = paymentRepository.findAllByPaymentDateBetween(dateFormat.parse(parameters.getDate()), new Date());
             payments.forEach(payment -> dtos.add(PaymentUtil.build(payment)));
         }
         return dtos;

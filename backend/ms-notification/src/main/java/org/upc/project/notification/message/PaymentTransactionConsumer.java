@@ -9,7 +9,6 @@ import org.upc.project.notification.beans.PaymentDTO;
 import org.upc.project.notification.entity.PaymentNotification;
 import org.upc.project.notification.repository.PaymentNotificationRepository;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Slf4j
@@ -18,14 +17,9 @@ public class PaymentTransactionConsumer {
 
     private static final ObjectMapper objectMapper;
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy/MM/dd");
-
     static {
         objectMapper = new ObjectMapper();
     }
-
-    private static final String url = "https://api.sendgrid.com/v3/mail/send";
-    private static final String apiToken = "Bearer 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";
 
     @Autowired
     private SendgridApi sendgridApi;

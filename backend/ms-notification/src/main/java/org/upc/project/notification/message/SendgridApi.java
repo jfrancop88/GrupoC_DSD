@@ -75,7 +75,7 @@ public class SendgridApi {
 
         ResponseEntity<String> responseEmail = restTemplate.postForEntity(url, request, String.class);
         if (responseEmail.getStatusCode() != HttpStatus.ACCEPTED) {
-            throw new Exception("Error Service");
+            throw new Exception("Error Service Sendgrid");
         }
         log.info("Finish Email Api Sengrid");
     }

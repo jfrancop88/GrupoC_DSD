@@ -12,8 +12,9 @@ import java.util.List;
 public interface PaymentRepository extends CrudRepository<Payment, Long> {
     Payment findByTransactionNumber(String transactionNumber);
 
-    List<Payment> findAllByTransactionNumberOrPaymentDate(String transactionNumber,
-                                                          Date paymentDate);
+    List<Payment> findAllByTransactionNumber(String transactionNumber);
+
+    List<Payment> findAllByPaymentDateBetween(Date now, Date paymentDate);
 
     List<Payment> findAllByCustomer(Customer customer);
 }
