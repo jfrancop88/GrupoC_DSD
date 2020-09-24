@@ -13,6 +13,7 @@ public class DynamicTemplate {
     @JsonProperty("dynamic_template_data")
     private DataEmail dataEmail;
 
+    @JsonProperty("subject")
     private String subject;
 
 }

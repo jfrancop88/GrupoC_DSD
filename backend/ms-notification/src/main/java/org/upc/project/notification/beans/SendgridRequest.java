@@ -13,4 +13,6 @@ public class SendgridRequest {
 
     @JsonProperty("template_id")
     private String template;
+
+    private String subject;
 }
