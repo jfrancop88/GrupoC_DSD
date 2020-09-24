@@ -31,4 +31,7 @@ public class Ecommerce {
 
     @Column(name = "enabled")
     private boolean enabled; //true
+
+    @Column(name = "account_number")
+    private String accountNumber;
 }

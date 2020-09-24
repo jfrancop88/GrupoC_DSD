@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `system-payment`.`ecommerce` (
   `enabled` BIT(1) NULL DEFAULT 1,
   `name` VARCHAR(255) NOT NULL,
   `commission_percentage` INTEGER NOT NULL,
+  `account_number` VARCHAR(20) NOT NULL,
   PRIMARY KEY (`ecommerce_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

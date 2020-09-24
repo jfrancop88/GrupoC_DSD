@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4bfdeb96-803f-43ba-a05b-7c870e9405d0",
+		"_postman_id": "79d64d7b-f1f6-4dd9-87c2-672dd6ebb63f",
 		"name": "PAYMENT",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -104,6 +104,36 @@
 						"v1",
 						"payment",
 						"799bc9a8-4493-46b3-b4c0-344daca03bc2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ECOMMERCE_SAVE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ripley\",\n    \"ruc\": \"203938382829\",\n    \"accountNumber\": \"19234824324012\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/v1/ecommerce",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"v1",
+						"ecommerce"
 					]
 				}
 			},
