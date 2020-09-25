@@ -11,7 +11,7 @@ import { Base64Service } from '../service/base64.service';
 })
 
 export class SigninComponent implements OnInit {
-    public email = '';
+    public username = '';
     public password = '';
     public remember = false;
     public errorMessage: string;
@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
         if (form.valid) {
                 this.errorMessage = null;
                 this.requesting = true;
-                this.api.signin(this.email, this.password)
+                this.api.signin(this.username, this.password)
                     .subscribe(() => {
                         console.log('Te has logueado correctamente');
                         this.router.navigateByUrl('/dashboard');
@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
                         this.requesting = false;
                     });
                 if (this.remember) {
-                    localStorage.setItem('login', JSON.stringify({email: this.email, password: this.base64.code('encode', this.password)}));
+                    localStorage.setItem('login', JSON.stringify({email: this.username, password: this.base64.code('encode', this.password)}));
                     console.log('Se ha recordado correctamente el usuario');
                 } else {
                     localStorage.removeItem('login');
@@ -45,8 +45,8 @@ export class SigninComponent implements OnInit {
 ngOnInit(): void {
         const local = localStorage.getItem('login');
         if (local) {
-          const { email, password } = JSON.parse(local);
-          this.email = email;
+          const { username, password } = JSON.parse(local);
+          this.username = username;
           this.password = this.base64.code('decode', password);
           this.remember = true;
         }

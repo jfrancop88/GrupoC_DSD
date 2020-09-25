@@ -1,3 +1,20 @@
+const mysql = require('mysql');
+
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'mysql',
+    database: 'system-payment',
+    multipleStatements: true
+});
+
+db.connect((err) => {
+    if (!err)
+        console.log('Connection Established Successfully');
+    else
+        console.log('Connection Failed!' + JSON.stringify(err, undefined, 2));
+});
+
 const getAll = () => {
     return new Promise((resolve, reject) => {
         db.query('SELECT * FROM user', (err, rows) => {
@@ -8,21 +25,23 @@ const getAll = () => {
 };
 
 // Registrar nuevos usuarios
-const registerUser = ({ user_id, username, password, create_time, ecommerce_id})=>{
-    return new Promise((resolve, reject)=>{
-        db.query('INSERT INTO users (user_id, username, password, create_time, ecommerce_id) values (?, ?, ?, ?, ?)', [user_id, username, password, create_time, ecommerce_id], (err, result)=>{
-            if(err) reject(err)
-            if(result){
-                resolve(result)
-            };
-        });
+const registerUser = ({username, password, email, ecommerce_id}) => {
+    return new Promise((resolve, reject) => {
+        db.query('INSERT INTO user ( username, password, email, ecommerce_id) values (?,?, ?, ?)', [username, password, email, ecommerce_id],
+            (err, result) => {
+                if (err) reject(err)
+                if (result) {
+                    resolve(result)
+                }
+                ;
+            });
     });
 };
 
 // Obtener sesión por username
-const getbyUsername = (getUsername) => {
+const getByUsername = (username) => {
     return new Promise((resolve, reject) => {
-        db.query('SELECT * FROM users where username = ?', [getUsername],(err, rows) => {
+        db.query("SELECT * FROM user where username = ?", [username], (err, rows) => {
             if (err) reject(err)
             resolve(rows[0])
         });
@@ -32,9 +51,8 @@ const getbyUsername = (getUsername) => {
 // Login de usuario
 
 
-
-module.exports ={
+module.exports = {
     getAll: getAll,
-    registerUser : registerUser,
-    getbyUsername : getbyUsername
+    registerUser: registerUser,
+    getByUsername: getByUsername
 }

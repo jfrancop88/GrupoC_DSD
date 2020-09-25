@@ -6,7 +6,7 @@ const jwt = require('jwt-simple');
 const moment = require('moment');
 
 //Obtener el listado de usuarios registrados
-router.get('/', async (req, res)=>{
+router.get('/users', async (req, res)=>{
     const users = await User.getAll();
     res.json(users);
 });
@@ -20,8 +20,8 @@ router.post('/register', async (req, res)=>{
 });
 
 router.post('/login', async (req, res) => {
-    const user = await Users.getbyUsername(req.body.username);
-    if (user == undefined){
+    const user = await User.getByUsername(req.body.username);
+    if (user === undefined){
         res.json({error:'Error, no se encuentra el usuario'})
     }
     else {
