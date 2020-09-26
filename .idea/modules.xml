@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GrupoC_DSD.iml" filepath="$PROJECT_DIR$/.idea/GrupoC_DSD.iml" />
       <module fileurl="file://$PROJECT_DIR$/backend/ms-payment/example-rest.iml" filepath="$PROJECT_DIR$/backend/ms-payment/example-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-notification/ms-notification.iml" filepath="$PROJECT_DIR$/backend/ms-notification/ms-notification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-payment/ms-project.iml" filepath="$PROJECT_DIR$/backend/ms-payment/ms-project.iml" />
     </modules>
   </component>
 </project>
