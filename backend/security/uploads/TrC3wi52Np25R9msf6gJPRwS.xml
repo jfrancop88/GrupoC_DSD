@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:un:unece:uncefact:documentation:2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:udt="urn:un:unece:uncefact:data:specification:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent>
+        <sac:AdditionalInformation>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1001</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">847.46</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1002</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">0.00</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1003</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">0.00</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1004</cbc:ID>
+            <cbc:PayableAmount currencyID="PEN">0.00</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalProperty>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Value>SON:MIL CON 00/100 NUEVOS SOLES </cbc:Value>
+          </sac:AdditionalProperty>
+          <sac:SUNATTransaction>
+            <cbc:ID>01</cbc:ID>
+          </sac:SUNATTransaction>
+        </sac:AdditionalInformation>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><ds:Signature Id="SignSUNAT">
+  <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+  <ds:Reference URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>TfQEL37HSoHhmnKuipMQEp7uNR4=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>Ncywprt7Qq1EeGfumQCB/yhHIpDGYpLYsNKV74m+Spe9yRkired2/0cgrjEDXvB5AlxwmfQ16yyOW1sGdpwFtuhsC9+s9oykpJh5cgEUqPt156wHKgKYV4mAGi5JzPKGpwQZ6zdB5selss1qXd6CXH0RrBC9+Y6eqiAhI0AmaWPZWUBM0SNVI5mubOokqoXXkLDaJKBya0XItOUsZ3LxSrPWGQwWEcJDHIAXSGM1RMiZtDKSQc6ddCvWV7FLzlpAdIrntAKJUQA2a2r1r5EBpJHpzml52lqJqYz8P+eTNioHLRxQHK6+pCyCTKcQIqr6AZMY1rKp8lVQXdwbpnZCVA==</ds:SignatureValue>
+<ds:KeyInfo><ds:X509Data><ds:X509Certificate>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</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+  <cbc:CustomizationID>1.0</cbc:CustomizationID>
+  <cbc:ID>F001-00000001</cbc:ID>
+  <cbc:IssueDate>2017-09-20</cbc:IssueDate>
+  <cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>
+  <cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
+  <cac:Signature>
+    <cbc:ID>20402805294</cbc:ID>
+    <cbc:Note>ELABORADO POR DESARROLLO DE SISTEMAS INTEGRADOS DE GESTION PERU S.A.C</cbc:Note>
+    <cac:SignatoryParty>
+      <cac:PartyIdentification>
+        <cbc:ID>20402805294</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>AGRICOLA Y GANADERA CHAVIN DE HUANTAR SA   </cbc:Name>
+      </cac:PartyName>
+      <cac:AgentParty>
+        <cac:PartyIdentification>
+          <cbc:ID>20402805294</cbc:ID>
+        </cac:PartyIdentification>
+        <cac:PartyName>
+          <cbc:Name>AGRICOLA Y GANADERA CHAVIN DE HUANTAR SA   </cbc:Name>
+        </cac:PartyName>
+        <cac:PartyLegalEntity>
+          <cbc:RegistrationName>AGRICOLA Y GANADERA CHAVIN DE HUANTAR SA   </cbc:RegistrationName>
+        </cac:PartyLegalEntity>
+      </cac:AgentParty>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>SIGN</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cbc:CustomerAssignedAccountID>20402805294</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyName>
+        <cbc:Name>AGRICOLA Y GANADERA CHAVIN DE HUANTAR SA   </cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:ID>020801</cbc:ID>
+        <cbc:StreetName>MZA. B LOTE. 5 TABONCILLO (POR HOTEL LAS PONCIANAS,PSJE DEL FRENTE)</cbc:StreetName>
+        <cbc:CitySubdivisionName>SURCO</cbc:CitySubdivisionName>
+        <cbc:CityName>ANCASH</cbc:CityName>
+        <cbc:CountrySubentity>CASMA</cbc:CountrySubentity>
+        <cbc:District>CASMA</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>AGRICOLA Y GANADERA CHAVIN DE HUANTAR SA   </cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cbc:CustomerAssignedAccountID>20601733022</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PostalAddress>
+        <cbc:ID>040122</cbc:ID>
+        <cbc:StreetName>AV. BRASIL MZA. B LOTE. 4 P.J. LA UNION AREQUIPA-AREQUIPA-SOCABAYA</cbc:StreetName>
+        <cbc:CitySubdivisionName>-</cbc:CitySubdivisionName>
+        <cbc:CityName>AREQUIPA</cbc:CityName>
+        <cbc:CountrySubentity>AREQUIPA</cbc:CountrySubentity>
+        <cbc:District>SOCABAYA</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PhysicalLocation>
+        <cbc:Description>AV. BRASIL MZA. B LOTE. 4 P.J. LA UNION AREQUIPA-AREQUIPA-SOCABAYA</cbc:Description>
+      </cac:PhysicalLocation>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>DESARROLLO DE SISTEMAS INTEGRADOS DE GESTION PERU SOCIEDAD ANONIMA CERRADA - DSIG PERU S.A.C.      </cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:SellerSupplierParty>
+    <cac:Party>
+      <cac:PostalAddress>
+        <cbc:AddressTypeCode>0001</cbc:AddressTypeCode>
+      </cac:PostalAddress>
+    </cac:Party>
+  </cac:SellerSupplierParty>
+  <cac:PaymentMeans>
+    <cbc:PaymentMeansCode>-</cbc:PaymentMeansCode>
+    <cbc:PaymentDueDate>2017-09-20</cbc:PaymentDueDate>
+  </cac:PaymentMeans>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cac:TaxScheme>
+          <cbc:ID>1000</cbc:ID>
+          <cbc:Name>IGV</cbc:Name>
+          <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:AllowanceTotalAmount currencyID="PEN">0.00</cbc:AllowanceTotalAmount>
+    <cbc:ChargeTotalAmount currencyID="PEN">0.00</cbc:ChargeTotalAmount>
+    <cbc:PayableAmount currencyID="PEN">1000.00</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:InvoicedQuantity unitCode="ZZ">1</cbc:InvoicedQuantity>
+    <cbc:LineExtensionAmount currencyID="PEN">847.46</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyID="PEN">847.46</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:AllowanceCharge>
+      <cbc:ChargeIndicator>false</cbc:ChargeIndicator>
+      <cbc:Amount currencyID="PEN">0.00</cbc:Amount>
+    </cac:AllowanceCharge>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+      <cac:TaxSubtotal>
+        <cbc:TaxAmount currencyID="PEN">152.54</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubtotal>
+    </cac:TaxTotal>
+    <cac:Item>
+      <cbc:Description>PRUEBA-FILA 1-FILA 2-FILA 3</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>1</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="PEN">1000.00</cbc:PriceAmount>
+    </cac:Price>
+  </cac:InvoiceLine>
+</Invoice>

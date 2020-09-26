@@ -1,0 +1,80 @@
+<div style="width: 400px; margin: auto;">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="title">Codigo de empresa</label>
+          <input
+            type="text"
+            class="form-control"
+            id="code"
+            required
+            [(ngModel)]="data.code"
+            name="code"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              required
+              [(ngModel)]="data.name"
+              name="name"
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Comisión %</label>
+            <input
+              type="text"
+              class="form-control"
+              id="percentageT"
+              required
+              [(ngModel)]="data.percentageT"
+              name="percentageT"
+              disabled
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="title">Banco</label>
+            <select
+            class="custom-select"
+            id="inlineFormCustomSelect">
+                <option selected value="1">Banco de Crédito - BCP</option>
+                <option value="2">Banco BBVA</option>
+                <option value="3">Interbank</option>
+                <option value="4">Scotiabank</option>
+                <option value="5">Banbif</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="title">Numero de cuenta</label>
+            <input
+              type="text"
+              class="form-control"
+              id="accountNumber"
+              required
+              [(ngModel)]="data.accountNumber"
+              name="accountNumber"
+            />
+        </div>
+
+        <div class = "text-center col-xs-12">
+        <button (click)="register()" class="btn btn-primary">Registrar Comercio</button>
+        </div>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4 class="text-center">¡Se ha registrado correctamente!</h4>
+        <H5 class="text-center">Por favor registre un usuario</H5>
+        <!--button class="btn btn-success" (click)="newTutorial()">Add</button-->
+      </div>
+      <div *ngIf="errorMessage" class="pt-lg text-center text-danger">
+        {{errorMessage}}
+      </div>
+    </div>
+  </div>

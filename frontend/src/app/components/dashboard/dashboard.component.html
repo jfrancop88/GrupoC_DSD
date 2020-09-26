@@ -1,0 +1,27 @@
+<h4>Listado de transacciones</h4>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre del cliente</th>
+        <th scope="col">Numero de factura</th>
+        <th scope="col">Fecha de compra</th>
+        <th scope="col">Importe</th>
+        <th scope="col">Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr 
+      *ngFor="let transaction of transactions; let i = index"
+      [class.active]="i == currentIndex">
+        <th scope="row">{{i+1}}</th>
+        <td> {{ transaction.customer.fullName }} </td>
+        <td> {{ transaction.invoiceNumber }}</td>
+        <td> {{ transaction.transactionDate }}</td>
+        <td> {{ transaction.paymentAmount }}</td>
+        <td> {{ transaction.statePayment }}</td>
+      </tr>
+    </tbody>
+</table>
+

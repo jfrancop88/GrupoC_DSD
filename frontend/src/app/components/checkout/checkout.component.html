@@ -1,0 +1,192 @@
+<div class = "container">
+<div class = "card">
+
+    <div class="card-header text-center">
+        <h2>Bienvenido a ePay</h2>
+    </div>
+    <hr>
+    <div class="row">
+    <div class="col-sm-6 ">
+        <div class="card card-user">
+            <h4 class="card-title text-center">Medio de pago</h4>
+
+            <div style="width: 450px; margin: auto;">
+                <div class="submit-form">
+                <div *ngIf="!submitted">
+                    
+                    <div class="form-group col-xs-12">
+                    <label for="title">Nombre del titular</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        class="form-control"
+                        required
+                        [(ngModel)]="check.customer.fullName"
+                        name="fullName"
+                    />
+                    </div>
+
+                    <div class="form-group col-xs-4">
+                        <label for="title">Tipo Doc</label>
+                        <select
+                        class="custom-select"
+                        id="inlineFormCustomSelect">
+                            <option selected value="1">DNI</option>
+                            <option value="2">CE</option>
+                            <option value="3">PASSPORT</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-xs-8">
+                        <label for="title">Documento</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="documentNumber"
+                        required
+                        [(ngModel)]="check.customer.documentNumber"
+                        name="documentNumber"
+                        />
+                    </div>
+
+                    <div class="form-group col-xs-8">
+                        <label for="title">Tarjeta Crédito</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="accountNumber"
+                        required
+                        [(ngModel)]="check.customer.accountNumber"
+                        name="accountNumber"
+                        />
+                    </div>
+
+                    <div class="form-group col-xs-4">
+                        <label for="title">CCV</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="identificationCode"
+                        required
+                        [(ngModel)]="check.customer.identificationCode"
+                        name="identificationCode"
+                        />
+                    </div>
+
+                    <div class="form-group col-xs-4">
+                        <label for="title">Vencimiento</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="expirationDateM"
+                        required
+                        [(ngModel)]="check.customer.expirationDateM"
+                        name="expirationDateM"
+                        placeholder="Mes"
+                        /> 
+                    </div>
+                   
+                    <div class="form-group col-xs-4">
+                        <label for="title">Tarjeta</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="expirationDateY"
+                        required
+                        [(ngModel)]="check.customer.expirationDateY"
+                        name="expirationDateY"
+                        placeholder="Año"
+                        />
+                    </div>
+                    
+                    <div class="form-group col-xs-4">
+                        <label for="title">Cuotas</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="quota"
+                        required
+                        [(ngModel)]="check.quota"
+                        name="quota"
+                        />
+                    </div>
+            
+                    <div class="form-group col-xs-12">
+                        <label for="title">Celular</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="telephoneNumber"
+                        required
+                        [(ngModel)]="check.customer.telephoneNumber"
+                        name="telephoneNumber"
+                        />
+                    </div>
+
+                    <div class="form-group col-xs-12">
+                        <label for="title">Correo Electrónico</label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        id="email"
+                        required
+                        [(ngModel)]="check.customer.email"
+                        name="email"
+                        />
+                    </div>
+                    
+                    <div class = "text-center col-xs-12">
+                        <button (click)="paymentSave()" class="btn btn-primary ">Procesar pago</button>
+                    </div>
+                </div>
+            
+                <div *ngIf="submitted">
+                    <h4>You submitted successfully!</h4>
+                    <!--button class="btn btn-success" (click)="newTutorial()">Add</button-->
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 ">
+        <div class="card card-user">
+            <div class="image col-xs-12">
+                <img src="assets/img/background.jpg" alt="..."/>
+            </div>
+            <div class="content">
+                <div class="author">
+                    <img class="avatar border-white" src="assets/img/faces/face-2.jpg" alt="..."/>
+                    <h4 class="title">Nombre del Comercio<br />
+                        <a href="#"><small>@comercio</small></a>
+                    </h4>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Resumen</h4>
+            </div>
+            <div class="content">
+                <ul class="list-unstyled team-members">
+                    <li>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                Descripción del pedido
+                                <br />
+                                <span class="text-info"><small>Pedido # XXXXXXXX</small></span>
+                            </div>
+                            <div class="col-sm-6 text-center text-info"><h4>S/100.00</h4></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+</div>
