@@ -1,0 +1,401 @@
+{
+	"info": {
+		"_postman_id": "4bfdeb96-803f-43ba-a05b-7c870e9405d0",
+		"name": "PAYMENT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ecommerce",
+			"item": [
+				{
+					"name": "ECOMMERCE_SAVE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"code\": \"OE\",\r\n\"name\": \"Oeschle\",\r\n\"percentage\": 2,\r\n\"accountNumber\":\"2222222222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/ecommerce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"ecommerce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ECOMMERCE_UPDATE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"code\": \"OE\",\r\n\"name\": \"Oeschle\",\r\n\"percentage\": 2,\r\n\"accountNumber\":\"2222222222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/ecommerce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"ecommerce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ECOMMERCE_ALL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"code\": \"OE\",\r\n\"name\": \"Oeschle\",\r\n\"percentage\": 2,\r\n\"accountNumber\":\"2222222222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/ecommerces",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"ecommerces"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ECOMMERCE_DETAIL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"code\": \"OE\",\r\n\"name\": \"Oeschle\",\r\n\"percentage\": 2,\r\n\"accountNumber\":\"2222222222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/ecommerce/OE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"ecommerce",
+								"OE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ECOMMERCE_DELETE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"code\": \"OE\",\r\n\"name\": \"Oeschle\",\r\n\"percentage\": 2,\r\n\"accountNumber\":\"2222222222\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/ecommerce/OE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"ecommerce",
+								"OE"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "PAYMENT_SAVE",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"paymentAmount\": 456,\r\n    \"invoiceNumber\": \"456234987\",\r\n    \"verificationNumber\": \"E34T43\",\r\n    \"quota\": 1,\r\n    \"customer\": {\r\n        \"fullName\": \"Wendy Olivares\",\r\n        \"email\": \"WenOli@gmail.com\",\r\n        \"telephoneNumber\": \"934565432\",\r\n        \"documentNumber\": \"45687894\",\r\n        \"accountNumber\": \"1234124881113020\",\r\n        \"expirationDate\": \"09/23\",\r\n        \"identificationCode\": 376\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PAYMENT_PARAMETERS",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transactionNumber\": \"\",\r\n    \"name\": \"Alvro\",\r\n    \"date\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/payment/parameters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"parameters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PAYMENT_GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/v1/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PAYMENT_GET_DETAIL",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/api/v1/payment/799bc9a8-4493-46b3-b4c0-344daca03bc2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"799bc9a8-4493-46b3-b4c0-344daca03bc2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PAYMENT_SAVE_EMAIL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n    \"paymentAmount\": 299.0,\r\n    \"invoiceNumber\": \"24124124124124\",\r\n    \"verificationNumber\": \"G421rG\",\r\n    \"quota\": 2,\r\n    \"customer\": {\r\n        \"fullName\": \"Jordy Peralta\",\r\n        \"email\": \"jgpo1994@gmail.com\",\r\n        \"telephoneNumber\": \"986809252\",\r\n        \"documentNumber\": \"47082903\",\r\n        \"accountNumber\": \"4557883133341112\",\r\n        \"expirationDate\": \"03/23\",\r\n        \"identificationCode\": 912\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9000/api/v1/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "USER_GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4545/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4545",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER_AUTH",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"AAGUINAGA\",\r\n    \"password\":\"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4545/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4545",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "USER_CREATE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"AAGUINAGA\",\r\n    \"password\":\"123456\",\r\n    \"email\":\"alvarodaniel@gmail.com\",\r\n    \"ecommerce_id\":\"1\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4545/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4545",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

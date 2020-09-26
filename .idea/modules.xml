@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/GrupoC_DSD.iml" filepath="$PROJECT_DIR$/.idea/GrupoC_DSD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/ms-payment/example-rest.iml" filepath="$PROJECT_DIR$/backend/ms-payment/example-rest.iml" />
     </modules>
   </component>
 </project>
