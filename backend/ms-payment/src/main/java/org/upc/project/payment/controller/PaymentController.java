@@ -7,6 +7,7 @@ import org.upc.project.payment.beans.PaymentDTO;
 import org.upc.project.payment.beans.PaymentParameters;
 import org.upc.project.payment.service.PaymentService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1")
 public class PaymentController {

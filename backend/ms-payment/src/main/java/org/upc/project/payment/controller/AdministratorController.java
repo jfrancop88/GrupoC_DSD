@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.upc.project.payment.beans.EcommerceDTO;
 import org.upc.project.payment.service.EcommerceService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1")
 public class AdministratorController {
